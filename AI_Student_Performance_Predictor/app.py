@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="AI Student Performance Predictor", page_icon="🎓", layout="wide")
-df = pd.read_csv("data/student_performance.csv")
+from pathlib import Path
+df = pd.read_csv(Path(__file__).parent / "data" / "student_performance.csv")
 features=["attendance","previous_marks","internal_marks","assignment_score","study_hours"]
 X=df[features].astype(float).to_numpy(); y=df.performance_level.to_numpy()
 mn=X.min(0); mx=X.max(0); Xn=(X-mn)/(mx-mn+1e-9)
